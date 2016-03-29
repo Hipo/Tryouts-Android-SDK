@@ -1,1 +1,1 @@
-include ':sample', ':tryouts'
+include ':tryouts-sample', ':tryouts'

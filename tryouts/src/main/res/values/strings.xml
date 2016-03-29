@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Tryouts</string>
+    <string name="tryouts_app_name">Tryouts</string>
+    <string name="tryouts_new_version_found">New Version Found</string>
+    <string name="tryouts_is_available_as_an_updated">%s is available as an update.</string>
+    <string name="tryouts_remind_me_later">Remind me later</string>
+    <string name="tryouts_update_now">Update Now</string>
 </resources>
