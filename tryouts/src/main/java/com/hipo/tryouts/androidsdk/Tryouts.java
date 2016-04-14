@@ -12,7 +12,11 @@ import retrofit2.Response;
 
 public class Tryouts {
 
+    private final static String LAST_CHECK_TIME = "LastCheckTime";
+
     private static Context applicationContext;
+    private final static long checkInverval = 15 * 60 * 1000; // 15 Minutes
+    private static long lastCheckTime;
 
     private static String appIdentifier;
     private static String apiKey;
@@ -36,26 +40,30 @@ public class Tryouts {
 
     private static void controlVersion() {
 
+        lastCheckTime = SharedPrefUtil.getLong(applicationContext, LAST_CHECK_TIME, 0);
 
-        Call<Application> appReleaseCall = TryoutsService.getApi().getLatestVersion(appIdentifier);
+        if(lastCheckTime == 0 || checkInverval < System.currentTimeMillis() - lastCheckTime) {
 
-        appReleaseCall.enqueue(new Callback<Application>() {
-            @Override
-            public void onResponse(Call<Application> call, Response<Application> response) {
+            Call<Application> appReleaseCall = TryoutsService.getApi().getLatestVersion(appIdentifier);
 
-                if(response.isSuccessful()) {
+            appReleaseCall.enqueue(new Callback<Application>() {
+                @Override
+                public void onResponse(Call<Application> call, Response<Application> response) {
 
-                    compareWithRelease(response.body().getLatestRelease());
+                    if (response.isSuccessful()) {
+                        lastCheckTime = System.currentTimeMillis();
+                        SharedPrefUtil.putLong(applicationContext, LAST_CHECK_TIME, lastCheckTime);
+                        compareWithRelease(response.body().getLatestRelease());
+                    }
 
                 }
 
-            }
+                @Override
+                public void onFailure(Call<Application> call, Throwable t) {
 
-            @Override
-            public void onFailure(Call<Application> call, Throwable t) {
-
-            }
-        });
+                }
+            });
+        }
 
     }
 
@@ -65,11 +73,14 @@ public class Tryouts {
             PackageInfo pinfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
             int versionNumber = pinfo.versionCode;
             String versionName = pinfo.versionName;
-
-            Log.d("Hello", versionName + " " + versionNumber);
-
-            if(versionName.compareTo(appRelease.getReleaseNumber()) < 0) {
-                applicationContext.startActivity(TransparentActivity.newIntent(applicationContext, appRelease));
+            String[] installedAppMajorMinors = versionName.split("\\.");
+            String[] latestAppMajorMinors = appRelease.getReleaseNumber().split("\\.");
+            for(int i  = 0 ; i < installedAppMajorMinors.length; i++) {
+                if(latestAppMajorMinors != null && i < latestAppMajorMinors.length) {
+                    if(Integer.valueOf(installedAppMajorMinors[i]) < Integer.valueOf(latestAppMajorMinors[i])) {
+                        applicationContext.startActivity(TransparentActivity.newIntent(applicationContext, appRelease));
+                    }
+                }
             }
 
         } catch (PackageManager.NameNotFoundException e) {

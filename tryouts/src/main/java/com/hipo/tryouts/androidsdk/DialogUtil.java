@@ -12,14 +12,15 @@ class DialogUtil {
             @StringRes int title,
             @StringRes int message,
             @StringRes int positiveButton,
+            DialogInterface.OnClickListener positiveButtonClickListener,
             @StringRes int negativeButton,
-            DialogInterface.OnClickListener onClickListener) {
+            DialogInterface.OnClickListener negativeButtonClickListener) {
 
         new AlertDialog.Builder(context, R.style.tryouts_AlertDialogStyle)
                 .setTitle(title)
                 .setMessage(message)
-                .setPositiveButton(positiveButton, onClickListener)
-                .setNegativeButton(negativeButton, null)
+                .setPositiveButton(positiveButton, positiveButtonClickListener)
+                .setNegativeButton(negativeButton, negativeButtonClickListener)
                 .create()
                 .show();
     }
@@ -29,14 +30,15 @@ class DialogUtil {
             String title,
             String message,
             String positiveButton,
+            DialogInterface.OnClickListener positiveButtonClickListener,
             String negativeButton,
-            DialogInterface.OnClickListener positiveButtonClickListener) {
+            DialogInterface.OnClickListener negativeButtonClickListener) {
 
         new AlertDialog.Builder(context, R.style.tryouts_AlertDialogStyle)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(positiveButton, positiveButtonClickListener)
-                .setNegativeButton(negativeButton, null)
+                .setNegativeButton(negativeButton, negativeButtonClickListener)
                 .create()
                 .show();
     }

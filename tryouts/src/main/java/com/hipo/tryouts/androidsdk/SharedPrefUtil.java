@@ -22,6 +22,16 @@ class SharedPrefUtil {
         return prefs.getString(key, defaultValue);
     }
 
+    public static void putLong(Context context, String key, long value) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs.edit().putLong(key, value).apply();
+    }
+
+    public static long getLong(Context context, final String key, final long defaultValue) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getLong(key, defaultValue);
+    }
+
     public static void putBoolean(Context context, String key, boolean value) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.edit().putBoolean(key, value).apply();
