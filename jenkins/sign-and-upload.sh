@@ -46,7 +46,7 @@ $GIT_HISTORY"
 # Thanks @djacobs https://gist.github.com/djacobs/2411095
 # Thanks @johanneswuerbach https://gist.github.com/johanneswuerbach/5559514
 
-OUTPUTDIR="$PWD/app/build/outputs/apk"
+OUTPUTDIR="$PWD/tryouts-sample/build/outputs/apk"
 
 echo "***************************"
 echo "*        Signing          *"
@@ -67,7 +67,7 @@ if [ ! -z "$TRYOUTS_PRODUCTION_APP_ID" ] && [ ! -z "$TRYOUTS_PRODUCTION_APP_TOKE
     -F status="2" \
     -F notify="0" \
     -F notes="$RELEASE_NOTES" \
-    -F build="@$OUTPUTDIR/app-debug.apk" \
+    -F build="@$OUTPUTDIR/tryouts-sample-release.apk" \
     -H "Authorization: $TRYOUTS_PRODUCTION_APP_TOKEN"
 fi
 
