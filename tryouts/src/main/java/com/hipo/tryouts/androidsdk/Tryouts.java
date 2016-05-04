@@ -19,6 +19,7 @@ import retrofit2.Response;
 public class Tryouts {
 
     private final static String LAST_CHECK_TIME = "LastCheckTime";
+    private final static String tryoutsFolderName = "TryoutsScreenshots";
 
     private static Context applicationContext;
     private final static long checkInverval = 15 * 60 * 1000; // 15 Minutes
@@ -46,8 +47,44 @@ public class Tryouts {
     }
 
     public static void sendFeedback(Context activityContext) {
-        applicationContext.startActivity(FeedbackActivity.newIntent(applicationContext));
+        applicationContext.startActivity(FeedbackActivity.newIntent(applicationContext, getScreenshotBase64(activityContext)));
+    }
 
+    private static String getScreenshotBase64 (Context context) {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            View v1 = ((Activity) context).getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] b = baos.toByteArray();
+            return Base64.encodeToString(b, Base64.DEFAULT);
+
+
+//            FileOutputStream outputStream = new FileOutputStream(imageFile);
+//            int quality = 100;
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+//            outputStream.flush();
+//            outputStream.close();
+//
+//            Intent intent = new Intent();
+//            intent.setAction(Intent.ACTION_VIEW);
+//            Uri uri = Uri.fromFile(imageFile);
+//            intent.setDataAndType(uri, "image/*");
+//            context.startActivity(intent);
+
+        } catch (Throwable e) {
+            // Several error may come out with file handling or OOM
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -88,9 +125,9 @@ public class Tryouts {
             String versionName = pinfo.versionName;
             String[] installedAppMajorMinors = versionName.split("\\.");
             String[] latestAppMajorMinors = appRelease.getReleaseNumber().split("\\.");
-            for(int i  = 0 ; i < installedAppMajorMinors.length; i++) {
-                if(latestAppMajorMinors != null && i < latestAppMajorMinors.length) {
-                    if(Integer.valueOf(installedAppMajorMinors[i]) < Integer.valueOf(latestAppMajorMinors[i])) {
+            for (int i = 0; i < installedAppMajorMinors.length; i++) {
+                if (latestAppMajorMinors != null && i < latestAppMajorMinors.length) {
+                    if (Integer.valueOf(installedAppMajorMinors[i]) < Integer.valueOf(latestAppMajorMinors[i])) {
                         applicationContext.startActivity(TransparentActivity.newIntent(applicationContext, appRelease));
                     }
                 }

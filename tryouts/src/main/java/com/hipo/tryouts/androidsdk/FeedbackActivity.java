@@ -12,9 +12,11 @@ public class FeedbackActivity extends AppCompatActivity {
 
     private static final String SCREENSHOT = "screenshotBase64";
 
-    public static Intent newIntent(Context context) {
+
+    public static Intent newIntent(Context context, String screenshotBase64) {
         Intent intent = new Intent(context, FeedbackActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(SCREENSHOT, screenshotBase64);
         return intent;
     }
 
@@ -27,6 +29,8 @@ public class FeedbackActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tryouts_activity_feedback);
+
+        final String screenshotBase64 = getIntent().getStringExtra(SCREENSHOT);
 
         submitButton = (Button) findViewById(R.id.activity_feedback_button_submit);
         feedbackEditText = (EditText) findViewById(R.id.activity_feedback_edittext_feedback);
