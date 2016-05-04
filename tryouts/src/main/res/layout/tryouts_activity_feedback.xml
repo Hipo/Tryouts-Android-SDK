@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:gravity="center">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="96dp">
+
+        <View
+            android:id="@+id/activity_feedback_transparent_space"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+
+        <RelativeLayout
+            android:id="@+id/feedback_activity_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_feedback_transparent_space"
+            android:layout_margin="2dp"
+            android:background="@drawable/tryouts_white_rounded_rectangle"
+            android:elevation="4dp"
+            android:paddingBottom="16dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="32dp">
+
+            <EditText
+                android:id="@+id/activity_feedback_edittext_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/tryouts_blue_rounded_rectangle"
+                android:gravity="center"
+                android:hint="@string/tryouts_your_name"
+                android:padding="16dp"
+                android:textColorHighlight="@null"
+                android:textColorHint="@android:color/secondary_text_dark" />
+
+            <Button
+                android:id="@+id/activity_feedback_button_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/tryouts_green_rounded_rectangle"
+                android:padding="16dp"
+                android:text="@string/tryouts_submit"
+                android:textColor="@color/tryouts_white" />
+
+            <CheckBox
+                android:id="@+id/activity_feedback_checkbox_screenshot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/activity_feedback_button_submit"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:buttonTint="@color/tryouts_gray"
+                android:text="@string/tryouts_add_screenshot_option"
+                android:textColor="@color/tryouts_gray"
+                />
+
+            <EditText
+                android:id="@+id/activity_feedback_edittext_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/activity_feedback_checkbox_screenshot"
+                android:layout_below="@id/activity_feedback_edittext_username"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/tryouts_orange_rounded_rectangle"
+                android:gravity="top|left"
+                android:hint="@string/tryouts_feedback"
+                android:padding="16dp"
+                android:textColorHint="@android:color/secondary_text_dark" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:elevation="4dp"
+            android:src="@drawable/im_tryouts_icon"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

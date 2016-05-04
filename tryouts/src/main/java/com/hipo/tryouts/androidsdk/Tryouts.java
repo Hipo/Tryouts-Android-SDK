@@ -1,10 +1,16 @@
 package com.hipo.tryouts.androidsdk;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.util.Log;
+import android.graphics.Bitmap;
+import android.os.Environment;
+import android.util.Base64;
+import android.view.View;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,7 +33,7 @@ public class Tryouts {
             String appIdentifier,
             String apiKey,
             String apiSecret
-            ) {
+    ) {
 
         Tryouts.applicationContext = context;
         Tryouts.appIdentifier = appIdentifier;
@@ -36,13 +42,20 @@ public class Tryouts {
         TryoutsService.init();
 
         controlVersion();
+
     }
+
+    public static void sendFeedback(Context activityContext) {
+        applicationContext.startActivity(FeedbackActivity.newIntent(applicationContext));
+
+    }
+
 
     private static void controlVersion() {
 
         lastCheckTime = SharedPrefUtil.getLong(applicationContext, LAST_CHECK_TIME, 0);
 
-        if(lastCheckTime == 0 || checkInverval < System.currentTimeMillis() - lastCheckTime) {
+        if (lastCheckTime == 0 || checkInverval < System.currentTimeMillis() - lastCheckTime) {
 
             Call<Application> appReleaseCall = TryoutsService.getApi().getLatestVersion(appIdentifier);
 
