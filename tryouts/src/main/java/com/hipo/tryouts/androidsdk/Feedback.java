@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Feedback implements Parcelable {
+class Feedback implements Parcelable {
 
     public static final Parcelable.Creator<Feedback> CREATOR = new Parcelable.Creator<Feedback>() {
         @Override
