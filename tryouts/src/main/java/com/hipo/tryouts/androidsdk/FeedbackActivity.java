@@ -20,12 +20,9 @@ import retrofit2.Response;
 
 public class FeedbackActivity extends AppCompatActivity {
 
-    private Button submitButton;
     private EditText feedbackEditText;
     private EditText userNameEditText;
     private CheckBox screenshotOptionCheckbox;
-    private String feedbackText;
-    private String userName;
     private String versionName;
 
     public static Intent newIntent(Context context) {
@@ -44,16 +41,15 @@ public class FeedbackActivity extends AppCompatActivity {
         feedbackEditText = (EditText) findViewById(R.id.feedback_edittext_feedback);
         userNameEditText = (EditText) findViewById(R.id.feedback_edittext_username);
         screenshotOptionCheckbox = (CheckBox) findViewById(R.id.feedback_checkbox_screenshot);
-        submitButton = (Button) findViewById(R.id.feedback_button_submit);
-        submitButton.setOnClickListener(submitFeedback);
+        findViewById(R.id.feedback_button_submit).setOnClickListener(submitFeedback);
     }
 
     private final View.OnClickListener submitFeedback = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            feedbackText = feedbackEditText.getText().toString();
-            userName = userNameEditText.getText().toString();
+            String feedbackText = feedbackEditText.getText().toString();
+            String userName = userNameEditText.getText().toString();
 
             if (feedbackEditText.getText().toString().isEmpty() && userNameEditText.getText().toString().isEmpty()) {
                 Toast toast = Toast.makeText(Tryouts.getApplicationContext(), R.string.tryouts_fill_all_fields, Toast.LENGTH_SHORT);

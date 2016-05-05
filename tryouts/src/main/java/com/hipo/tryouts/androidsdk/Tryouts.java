@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Environment;
 import android.util.Base64;
 import android.view.View;
 
@@ -22,7 +21,7 @@ public class Tryouts {
     private final static String tryoutsFolderName = "TryoutsScreenshots";
 
     private static Context applicationContext;
-    private final static long checkInverval = 15 * 60 * 1000; // 15 Minutes
+    private final static long checkInterval = 15 * 60 * 1000; // 15 Minutes
     private static long lastCheckTime;
 
     private static String appIdentifier;
@@ -79,7 +78,7 @@ public class Tryouts {
 
         lastCheckTime = SharedPrefUtil.getLong(applicationContext, LAST_CHECK_TIME, 0);
 
-        if (lastCheckTime == 0 || checkInverval < System.currentTimeMillis() - lastCheckTime) {
+        if (lastCheckTime == 0 || checkInterval < System.currentTimeMillis() - lastCheckTime) {
 
             Call<Application> appReleaseCall = TryoutsService.getApi().getLatestVersion(appIdentifier);
 

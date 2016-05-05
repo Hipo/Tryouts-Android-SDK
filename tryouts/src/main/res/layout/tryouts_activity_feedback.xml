@@ -53,7 +53,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/tryouts_orange_rounded_rectangle"
-                android:gravity="top|left"
+                android:gravity="top|start"
                 android:hint="@string/tryouts_feedback"
                 android:padding="16dp"
                 android:textColor="@color/tryouts_black"
@@ -67,6 +67,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:buttonTint="@color/tryouts_gray"
+                android:theme="@style/tryouts_FeedbackCheckBoxStyle"
                 android:text="@string/tryouts_add_screenshot_option"
                 android:textColor="@color/tryouts_gray" />
 
@@ -86,7 +87,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:elevation="4dp"
-            android:src="@drawable/im_tryouts_icon" />
+            android:src="@drawable/tryouts_im_icon" />
 
     </RelativeLayout>
 </ScrollView>
