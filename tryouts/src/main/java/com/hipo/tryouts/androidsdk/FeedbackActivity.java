@@ -37,7 +37,6 @@ public class FeedbackActivity extends AppCompatActivity {
     private EditText feedbackEditText;
     private EditText userNameEditText;
     private CheckBox screenshotOptionCheckbox;
-    private ScrollView scrollViewLayout;
     private String feedbackText;
     private String userName;
     private String versionName;
@@ -61,32 +60,33 @@ public class FeedbackActivity extends AppCompatActivity {
     private final View.OnClickListener submitFeedback = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            try {
-                PackageInfo pinfo = Tryouts.getApplicationContext().getPackageManager().getPackageInfo(Tryouts.getApplicationContext().getPackageName(), 0);
-                versionName = pinfo.versionName;
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-            feedbackText = feedbackEditText.getText().toString();
-            userName = userNameEditText.getText().toString();
 
             if (feedbackText.isEmpty() && userName.isEmpty()) {
                 Toast toast = Toast.makeText(Tryouts.getApplicationContext(),R.string.tryouts_fill_all_fields,Toast.LENGTH_SHORT);
                 toast.show();
             }
             else {
+                try {
+                    PackageInfo pinfo = Tryouts.getApplicationContext().getPackageManager().getPackageInfo(Tryouts.getApplicationContext().getPackageName(), 0);
+                    versionName = pinfo.versionName;
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                feedbackText = feedbackEditText.getText().toString();
+                userName = userNameEditText.getText().toString();
+
                 if (screenshotOptionCheckbox.isChecked()) {
 
-                    Call<Feedback> call = TryoutsService.getApi().sendFeedback(Tryouts.getApiKey()+":"+Tryouts.getApiSecret(),Tryouts.getAppIdentifier(), new Feedback(userName, versionName, feedbackText, screenshotBase64));
-
+                    Call<Feedback> call = TryoutsService.getApi().sendFeedback(
+                            Tryouts.getApiKey()+":"+Tryouts.getApiSecret(),
+                            Tryouts.getAppIdentifier(),
+                            new Feedback(userName, versionName, feedbackText, screenshotBase64));
                     //TODO:What to do with response
                     call.enqueue(new Callback<Feedback>() {
                         @Override
                         public void onResponse(Call<Feedback> call, Response<Feedback> response) {
-                            Log.v("Response Received",response.body().toString());
                             finish();
                         }
-
                         @Override
                         public void onFailure(Call<Feedback> call, Throwable t) {
 
@@ -95,21 +95,22 @@ public class FeedbackActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Call<Feedback> call = TryoutsService.getApi().sendFeedback(Tryouts.getApiKey()+":"+Tryouts.getApiSecret(),Tryouts.getAppIdentifier(), new Feedback(userName, versionName, feedbackText));
+
+                    Call<Feedback> call = TryoutsService.getApi().sendFeedback(
+                            Tryouts.getApiKey()+":"+Tryouts.getApiSecret(),
+                            Tryouts.getAppIdentifier(),
+                            new Feedback(userName, versionName, feedbackText));
 
                     //TODO:What to do with response
                     call.enqueue(new Callback<Feedback>() {
-                                     @Override
-                                     public void onResponse(Call<Feedback> call, Response<Feedback> response) {
-
-                                     }
-
-                                     @Override
-                                     public void onFailure(Call<Feedback> call, Throwable t) {
-
-                                     }
-                                 });
+                        @Override
+                        public void onResponse(Call<Feedback> call, Response<Feedback> response) {
                             finish();
+                        }
+                        @Override
+                        public void onFailure(Call<Feedback> call, Throwable t) {
+                        }
+                    });
                 }
             }
         }
