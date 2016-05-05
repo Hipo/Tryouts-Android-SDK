@@ -17,14 +17,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button feedbackButton = (Button) findViewById(R.id.main_button_feedback);
-        if (feedbackButton != null) {
-            feedbackButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Tryouts.sendFeedback(MainActivity.this);
-                }
-            });
-        }
+        findViewById(R.id.main_button_feedback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tryouts.sendFeedback(MainActivity.this);
+            }
+        });
     }
 }
