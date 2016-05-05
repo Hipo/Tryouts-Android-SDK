@@ -29,6 +29,8 @@ public class Tryouts {
     private static String apiKey;
     private static String apiSecret;
 
+    private static String screenshotBase64;
+
     public static void init(
             Context context,
             String appIdentifier,
@@ -47,16 +49,15 @@ public class Tryouts {
     }
 
     public static void sendFeedback(Context activityContext) {
-        applicationContext.startActivity(FeedbackActivity.newIntent(applicationContext, getScreenshotBase64(activityContext)));
+        screenshotBase64 = takeScreenshotBase64(activityContext);
+        applicationContext.startActivity(FeedbackActivity.newIntent(applicationContext));
     }
 
-    private static String getScreenshotBase64 (Context context) {
+    private static String takeScreenshotBase64 (Context context) {
         Date now = new Date();
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
 
         try {
-            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
-
             View v1 = ((Activity) context).getWindow().getDecorView().getRootView();
             v1.setDrawingCacheEnabled(true);
             Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
@@ -67,21 +68,7 @@ public class Tryouts {
             byte[] b = baos.toByteArray();
             return Base64.encodeToString(b, Base64.DEFAULT);
 
-
-//            FileOutputStream outputStream = new FileOutputStream(imageFile);
-//            int quality = 100;
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
-//            outputStream.flush();
-//            outputStream.close();
-//
-//            Intent intent = new Intent();
-//            intent.setAction(Intent.ACTION_VIEW);
-//            Uri uri = Uri.fromFile(imageFile);
-//            intent.setDataAndType(uri, "image/*");
-//            context.startActivity(intent);
-
         } catch (Throwable e) {
-            // Several error may come out with file handling or OOM
             e.printStackTrace();
             return null;
         }
@@ -154,6 +141,14 @@ public class Tryouts {
 
     public static String getApiSecret() {
         return apiSecret;
+    }
+
+    public static String getScreenshotBase64() {
+        return screenshotBase64;
+    }
+
+    public static void setScreenshotBase64(String screenshotBase64) {
+        Tryouts.screenshotBase64 = screenshotBase64;
     }
 
 
