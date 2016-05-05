@@ -8,4 +8,5 @@
     <string name="tryouts_feedback">Feedback...</string>
     <string name="tryouts_submit">SUBMIT</string>
     <string name="tryouts_add_screenshot_option">I would like to add the screenshot.</string>
+    <string name="tryouts_fill_all_fields">Please fill in all fields!</string>
 </resources>

@@ -5,5 +5,5 @@
     <color name="tryouts_teal">#00796B</color>
     <color name="tryouts_orange">#FF5722</color>
     <color name="tryouts_white">#FFFFFFFF</color>
-    
+    <color name="tryouts_black">#000000</color>
 </resources>

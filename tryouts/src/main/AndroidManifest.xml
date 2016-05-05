@@ -13,6 +13,7 @@
             android:name=".TransparentActivity"
             android:theme="@style/tryouts_Theme.Transparent" />
         <activity android:name=".FeedbackActivity"
+            android:windowSoftInputMode="adjustResize"
          android:theme="@style/tryouts_Theme.Transparent"/>
     </application>
 
