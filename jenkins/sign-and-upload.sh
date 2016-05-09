@@ -63,7 +63,7 @@ if [ ! -z "$TRYOUTS_PRODUCTION_APP_ID" ] && [ ! -z "$TRYOUTS_PRODUCTION_APP_TOKE
   echo "***************************"
   echo "* Uploading Release to Tryouts    *"
   echo "***************************"
-  curl https://tryouts.io/applications/$TRYOUTS_PRODUCTION_APP_ID/upload/ \
+  curl https://staging.tryouts.io/applications/$TRYOUTS_PRODUCTION_APP_ID/upload/ \
     -F status="2" \
     -F notify="0" \
     -F notes="$RELEASE_NOTES" \
