@@ -12,9 +12,9 @@ public class SampleApp extends Application {
 
         Tryouts.init(
                 getApplicationContext(),
-                "plxK3N44",
-                "fad2323eefd547b8baf2536bce98277c",
-                "c51ba4a687f508d436fafc15a88bdbf102878954"
+                "eZFkWyPh",
+                "7a6c125ece74b790172f5061748240ee",
+                "ea72c7874771c22e316f40475bde130a09b82dd0"
         );
 
     }

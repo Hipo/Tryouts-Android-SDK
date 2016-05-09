@@ -9,8 +9,8 @@ function section_print {
     echo "=== $* ==="
 }
 
-export TRYOUTS_PRODUCTION_APP_ID="m3u7UXmu"
-export TRYOUTS_PRODUCTION_APP_TOKEN="d3ff2df1206cad28af8b7da49e05cdb9:b8adeb074bd764df2e32ca5a6332acf5d2597e10"
+export TRYOUTS_PRODUCTION_APP_ID="eZFkWyPh"
+export TRYOUTS_PRODUCTION_APP_TOKEN="7a6c125ece74b790172f5061748240ee:ea72c7874771c22e316f40475bde130a09b82dd0"
 
 section_print "Signing and uploading"
 
