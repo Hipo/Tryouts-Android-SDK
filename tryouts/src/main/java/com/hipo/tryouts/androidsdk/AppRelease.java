@@ -31,7 +31,7 @@ class AppRelease implements Parcelable {
     private boolean isPrivate;
 
     @SerializedName("download_link")
-    private String dowmloadLink;
+    private String downloadLink;
 
     @SerializedName("public_install_link")
     private String publicInstallLink;
@@ -46,7 +46,7 @@ class AppRelease implements Parcelable {
         size = in.readString();
         shortHash = in.readString();
         isPrivate = in.readByte() != 0;
-        dowmloadLink = in.readString();
+        downloadLink = in.readString();
         publicInstallLink = in.readString();
     }
 
@@ -61,7 +61,7 @@ class AppRelease implements Parcelable {
         dest.writeString(size);
         dest.writeString(shortHash);
         dest.writeByte((byte) (isPrivate ? 1 : 0));
-        dest.writeString(dowmloadLink);
+        dest.writeString(downloadLink);
         dest.writeString(publicInstallLink);
     }
 
@@ -118,8 +118,8 @@ class AppRelease implements Parcelable {
         return isPrivate;
     }
 
-    public String getDowmloadLink() {
-        return dowmloadLink;
+    public String getDownloadLink() {
+        return downloadLink;
     }
 
     public String getPublicInstallLink() {

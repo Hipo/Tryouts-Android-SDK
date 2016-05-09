@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 class TryoutsService {
 
-    private final static String TRYOUTS_BASE_URL = "https://api.tryouts.io/v1/";
+    private final static String TRYOUTS_BASE_URL = "https://api-staging.tryouts.io/v1/";
     private static TryoutsApi tryoutsApi;
 
     public static void init() {

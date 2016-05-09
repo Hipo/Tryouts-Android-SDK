@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-public class TransparentActivity extends AppCompatActivity {
+class TransparentActivity extends AppCompatActivity {
 
     public static final String LATEST_RELEASE = "latestRelease";
 
@@ -34,7 +34,7 @@ public class TransparentActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(appRelease.getDowmloadLink()));
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(appRelease.getDownloadLink()));
                         startActivity(browserIntent);
                         finish();
                     }

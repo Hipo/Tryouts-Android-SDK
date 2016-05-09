@@ -4,4 +4,11 @@
     <string name="tryouts_is_available_as_an_updated">%s is available as an update.</string>
     <string name="tryouts_remind_me_later">Remind me later</string>
     <string name="tryouts_update_now">Update Now</string>
+    <string name="tryouts_your_name">Your name</string>
+    <string name="tryouts_feedback">Feedback&#8230;</string>
+    <string name="tryouts_submit">SUBMIT</string>
+    <string name="tryouts_add_screenshot_option">I would like to add the screenshot.</string>
+    <string name="tryouts_fill_all_fields">Please fill in all fields!</string>
+    <string name="tryouts_successful">Successful!</string>
+    <string name="tryouts_failed">Failed!</string>
 </resources>
