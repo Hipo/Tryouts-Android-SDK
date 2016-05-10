@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-class TransparentActivity extends AppCompatActivity {
+public class TransparentActivity extends AppCompatActivity {
 
     public static final String LATEST_RELEASE = "latestRelease";
 
